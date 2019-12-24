@@ -1,5 +1,5 @@
 # CherryJubilee
-===============
+
 ## Part-time salary management (Toy Project)
 ------------------------------
 
