@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+  
+}
+
+.logo {
+  text-align: left;
+  margin-top: 1.25rem;
+  margin-left : 5rem;
+}
+
+.box {
+  display : inline-block;
+  text-align: left;
+  font-family: -윤고딕330;
+  width: 27rem;
+  height: 30%;
+  margin: 1.25rem;
+}
+
+.box2 {
+  display : inline-block;
+  text-align: left;
+  width: 27rem;
+  height: 45rem;
+  margin: 1.25rem;
+}
+
+.login {
+  text-align: right;
+  font-family: -윤고딕320;
+  font-size : 1.5rem;
+  margin-top: 1.25rem;
+  margin-right : 5rem;
+  padding-bottom : 1rem;
+}
+
+.after-box {
+  clear: left;
+}
+
+.table {
+  text-align: center;
+}
