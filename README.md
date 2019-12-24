@@ -1,17 +1,17 @@
 # CherryJubilee
 
-## Part-time salary management (Toy Project)
+### Part-time salary management (Toy Project)
 
 
 ## 개발자
-### - Kim Do Ho
-### - Back Cheol Min
-### - Lee Jae Young
+####  Kim Do Ho
+####  Back Cheol Min
+####  Lee Jae Young
 
 
 ## 개발 일정
 
-### 2019. 12. 27 Front-End 및 Back-End 기초 작업
+#### 2019. 12. 27 Front-End 및 Back-End 기초 작업
 
 ## API 명세
 
