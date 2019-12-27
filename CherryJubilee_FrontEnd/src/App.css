@@ -101,7 +101,8 @@
   height: 2rem;
   border-radius: 28px;
   border:1px solid rgba(200,200,200);
-  margin-left: 0.1rem;
   font-size: 1rem;
   text-align: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
