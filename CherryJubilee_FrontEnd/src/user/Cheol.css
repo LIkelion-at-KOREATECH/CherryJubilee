@@ -1,0 +1,27 @@
+.main {
+    text-align: center;
+}
+.text{
+    width: 250px;
+    height: 40px;
+    padding-left: 10px;
+    margin:10px;
+    border: 1px solid rgba(200,200,200) ;
+    border-radius: 15px;
+  }
+  .loginbutton{
+    width: 150px;
+    height: 40px;
+    background-color: rgba(164,0,0);
+    color: white;
+    border-radius: 28px;
+  }
+  .signupbutton{
+    width: 150px;
+    height: 40px;
+    background-color: rgba(164,0,0);
+    font-weight: 700;
+    color: white;
+    
+    border-radius: 28px;
+  }
