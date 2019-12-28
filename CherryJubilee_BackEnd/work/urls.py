@@ -3,8 +3,8 @@ from django.urls import path, include
 from work import views
 
 router = DefaultRouter()
-router.register('work',views.PostViewSet)
+router.register(r'work',views.PostViewSet)
 
 urlpatterns = [
-    path('',include(router.urls))
+    path(r'',include(router.urls))
 ]
