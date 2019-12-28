@@ -42,6 +42,8 @@ class PostViewSet(viewsets.ModelViewSet) :
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
+        
+        
         startTime = str(data['startTime']).split(':')
         endTime = str(data['endTime']).split(':')
 
@@ -64,12 +66,16 @@ class PostViewSet(viewsets.ModelViewSet) :
 
         #print('시간 : ',Hour)
         #print('시간 : ',Minute)
-
+        
+        
         data['hour'] = int(Hour)
         data['minute'] = int(Minute)
         data['salary'] = int(Salary)
 
-        serializeData = {'date': data['date'], 'startTime': data['startTime'], 'endTime': data['endTime'], 'author': 1, 'hour': int(Hour), 'minute': int(Minute), 'salary': int(Salary)}
+        days = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
+        data['day'] = days[data['date'].weekday()]
+
+        serializeData = {'date': data['date'], 'startTime': data['startTime'], 'endTime': data['endTime'], 'author': 1, 'hour': int(Hour), 'minute': int(Minute), 'salary': int(Salary),'day': days[data['date'].weekday()]}
        
         #print(serializer.validated_data)
         #print(request.POST['date'])
@@ -102,4 +108,4 @@ class PostViewSet(viewsets.ModelViewSet) :
         qry = Work.objects.all()
         serializer = WorkSerializer(qry,many=True)
         return Response(serializer.data)
-   
+    

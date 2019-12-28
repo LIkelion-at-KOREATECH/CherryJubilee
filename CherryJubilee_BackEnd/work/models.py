@@ -9,4 +9,5 @@ class Work(models.Model) :
     hour = models.IntegerField(null=True,blank=True) # 시 ex) 4시간
     minute = models.IntegerField(null=True,blank=True) # 분 ex) 33분
     salary = models.IntegerField(null=True,blank=True)
+    day = models.TextField(max_length=10,null=True,blank=True)
 
