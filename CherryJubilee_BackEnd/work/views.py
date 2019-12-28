@@ -12,9 +12,10 @@ from django.shortcuts import render
 from rest_framework.response import Response
 # Create your views here.
 
+from datetime import datetime
 import json
 
-class PostViewSet(viewsets.ModelViewSet) :
+class WorkViewSet(viewsets.ModelViewSet) :
 
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
@@ -101,11 +102,42 @@ class PostViewSet(viewsets.ModelViewSet) :
         return qs
     
 
-
-    @action(detail=True, renderer_classes=[renderers.BrowsableAPIRenderer])
-    # 그냥 얍을 띄우는 custom api
-    def highlight(self, request, *args, **kwargs):
-        qry = Work.objects.all()
-        serializer = WorkSerializer(qry,many=True)
+    @action(methods=['get'], detail=True)
+    def follow(self, request, *args, **kwargs):
+        queryset = Work.objects.all().filter(date__year=2019,date__month=1)
+        serializer = WorkSerializer(queryset,many=True)
         return Response(serializer.data)
+   
+
+
+class WorkWeekViewSet(viewsets.ReadOnlyModelViewSet) :
+    queryset = Work.objects.all()
+    serializer_class = WorkSerializer
     
+    nowDate = datetime.now().strftime('%Y-%m-%d')
+    print(nowDate)      # 2015-04-19
+    print(nowDate)      # 2015-04-19
+    print(nowDate)      # 2015-04-19
+
+    import datetime
+    n = datetime.datetime.now()
+    print('오늘 날짜의 주차는',n.isocalendar()[1])
+
+
+    def get_queryset(self):
+        qs = super().get_queryset().filter(date__year=2019,date__month=1) | super().get_queryset().filter(date__year=2020)
+        # 로그인 된 상태일 경우 해당 user 데이터만 보여줌
+
+        if self.request.user.is_authenticated :
+            qs = qs.filter(author = self.request.user)
+        else :
+            qs = qs.none()
+        return qs
+
+    '''
+    @action(detail=False)
+    def follow(self, request):
+        queryset = Work.objects.all().filter(date__year=2019,date__month=1)
+        serializer = WorkSerializer(queryset,many=True)
+        return Response(serializer.data)
+    '''
