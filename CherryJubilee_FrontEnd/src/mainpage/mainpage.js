@@ -11,11 +11,28 @@ class mainpage extends Component {
             date: '',
             startTime: '',
             endTime: '',
+            author: 'admin',
+            results: [],
         }
+    }
+
+    componentDidMount() {
+        this.getWorks()
+    }
+
+    async getWorks() {
+        const _results = await api.getwork()
+        this.setState({results: _results.data})
+        console.log(_results.data)
     }
 
     handlingChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
+    }
+
+    handlingDelete = async (event) => {
+        await api.deleteWork(event.target.value) //찰나의 순간..이라도 await 해줘야됨
+        this.getWorks() //포스트 Refresh
     }
 
     handlingSubmit = async (event) => {
@@ -31,7 +48,8 @@ class mainpage extends Component {
         }
         else {
             alert("입력 되었습니다.")
-            api.creatework({date:this.state.date, startTime:this.state.startTime, endTime:this.state.endTime})
+            api.createWork({date:this.state.date, startTime:this.state.startTime, endTime:this.state.endTime})
+            // api.createWork({date: this.state.date, startTime: this.state.startTime, endTime: this.state.endTime})
             this.setState({date:'', startTime:'', endTime:''}) //창 초기화
         }
     }
@@ -48,21 +66,31 @@ class mainpage extends Component {
         const thlistcolor = {
             backgroundColor: 'rgba(237,237,237)',
         }
-        const workData = [
-            ['19.01.01', '화', '09:00', '20:00', '11:00', '83,500'],
-            ['19.01.01', '화', '09:00', '20:00', '11:00', '83,500']
-        ]
+        
+        
 
-        const getWorkData = workData.map((workdata)=>
+        const getWorkData = this.state.results.map((workdata)=>
+            // this.state = {
+            //     end_ymd : workdata.startTime,
+            //     hh : end_ymd.substr(0,2),
+            //     mm : end_ymd.substr(3,2),
+            // }
+            
             <tr>
-            <td width='80rem' height='30rem' style={thlistcolor}>{workdata[0]}</td>
-            <td width='40rem' height='30rem' style={thlistcolor}>{workdata[1]}</td>
-            <td width='70rem' height='30rem' style={thlistcolor}>{workdata[2]}</td>
-            <td width='70rem' height='30rem' style={thlistcolor}>{workdata[3]}</td>
-            <td width='70rem' height='30rem' style={thlistcolor}>{workdata[4]}</td>
-            <td width='50rem' height='30rem' style={thlistcolor}>{workdata[5]}</td>
+            <td width='80rem' height='30rem' style={thlistcolor}>{workdata.date}</td>
+            <td width='40rem' height='30rem' style={thlistcolor}>{workdata.day}</td>
+            <td width='70rem' height='30rem' style={thlistcolor}>{workdata.startTime}</td>
+            <td width='70rem' height='30rem' style={thlistcolor}>{workdata.endTime}</td>
+            <td width='70rem' height='30rem' style={thlistcolor}>{workdata.hour}:{workdata.minute}</td>
+            <td width='50rem' height='30rem' style={thlistcolor}>{workdata.salary}</td>
             <td width='40rem' height='30rem' >
-                <button className="delbutton">Del</button>
+                <button
+                    className="delbutton"
+                    onClick={this.handlingDelete}
+                    value={workdata.id}
+                >
+                    Del
+                </button>
             </td>
             </tr>
         )
