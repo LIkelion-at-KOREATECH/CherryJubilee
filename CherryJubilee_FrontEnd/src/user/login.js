@@ -10,6 +10,9 @@ class login extends Component {
           password: '',
         }
     }
+    
+    
+
     handlingChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
     }
