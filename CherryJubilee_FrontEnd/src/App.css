@@ -1,12 +1,13 @@
 .App {
   text-align: center;
+  height: 100%;
+  
 }
 
 .navigation {
   width: 70rem;
-  height: 5rem;
+  height: 10vh;
 
-  margin: 1rem;
   margin: 0 auto;
   background-color: white;
 }
@@ -14,7 +15,7 @@
 .container {
   text-align: left;
   width: 70rem;
-  height: 53.5rem;
+  height: 90vh;
   margin: 0 auto;
   background-color: white;
 }
@@ -44,7 +45,6 @@
   font-size : 1.5rem;
   margin-top: 1.25rem;
   margin-right: 1rem;
-  padding-bottom : 1rem;
 }
 
 
