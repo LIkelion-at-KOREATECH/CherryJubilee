@@ -12,6 +12,7 @@
 ## 개발 일정
 
 #### 2019. 12. 27 Front-End 및 Back-End 기초 작업
+#### 2019. 12. 29 Front, Back 연동 
 
 ## API 명세
 
@@ -21,3 +22,7 @@
 |POST|127.0.0.1/work/n|json|근무정보 추가|
 |DELETE|127.0.0.1/work/n|json|근무정보 삭제|
 |PUT|127.0.0.1/work/n|json|근무정보 수정|
+
+## Stack
+#### React
+#### Django

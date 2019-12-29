@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Link } from "react-router-dom";
+import '../api'
+import api from '../api';
 
 class mainpage extends Component {
     constructor(props) {
@@ -10,8 +12,8 @@ class mainpage extends Component {
             startTime: '',
             endTime: '',
         }
-
     }
+
     handlingChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
     }
@@ -29,6 +31,7 @@ class mainpage extends Component {
         }
         else {
             alert("입력 되었습니다.")
+            api.creatework({date:this.state.date, startTime:this.state.startTime, endTime:this.state.endTime})
             this.setState({date:'', startTime:'', endTime:''}) //창 초기화
         }
     }
@@ -37,6 +40,32 @@ class mainpage extends Component {
         this.setState({date:'', startTime:'', endTime:''}) //창 초기화
     }
     render() {
+        const thcolor = {
+            color: 'white',
+            backgroundColor: 'rgba(164,0,0)',
+        }
+            
+        const thlistcolor = {
+            backgroundColor: 'rgba(237,237,237)',
+        }
+        const workData = [
+            ['19.01.01', '화', '09:00', '20:00', '11:00', '83,500'],
+            ['19.01.01', '화', '09:00', '20:00', '11:00', '83,500']
+        ]
+
+        const getWorkData = workData.map((workdata)=>
+            <tr>
+            <td width='80rem' height='30rem' style={thlistcolor}>{workdata[0]}</td>
+            <td width='40rem' height='30rem' style={thlistcolor}>{workdata[1]}</td>
+            <td width='70rem' height='30rem' style={thlistcolor}>{workdata[2]}</td>
+            <td width='70rem' height='30rem' style={thlistcolor}>{workdata[3]}</td>
+            <td width='70rem' height='30rem' style={thlistcolor}>{workdata[4]}</td>
+            <td width='50rem' height='30rem' style={thlistcolor}>{workdata[5]}</td>
+            <td width='40rem' height='30rem' >
+                <button className="delbutton">Del</button>
+            </td>
+            </tr>
+        )
         const ColoredLine = ({ color }) => (
             <hr
                 style={{
@@ -49,14 +78,7 @@ class mainpage extends Component {
         
         const maincolor = { color: 'rgba(164,0,0)'};
         
-        const thcolor = {
-        color: 'white',
-        backgroundColor: 'rgba(164,0,0)',
-        };
-        
-        const thlistcolor = {
-            backgroundColor: 'rgba(237,237,237)',
-        }
+
 
         return (
         <div className="App">
@@ -80,27 +102,33 @@ class mainpage extends Component {
             <div className="container_left">
             <h3 style={maincolor}> 근무 리스트 </h3>
                 <ColoredLine color="rgba(164,0,0)" />
-                <table className="table" align = 'center'>
-                <tr>
-                    <td width='80rem' style={thcolor}>날짜</td>
-                    <td width='40rem' style={thcolor}>요일</td>
-                    <td width='70rem' style={thcolor}>시작시간</td>
-                    <td width='70rem' style={thcolor}>종료시간</td>
-                    <td width='70rem' style={thcolor}>총 시간</td>
-                    <td width='50rem' style={thcolor}>금액</td>
-                    <td width='40rem' style={thcolor}>수정</td>
-                </tr>
-                
-                <tr>
-                    <td width='80rem' height='30rem' style={thlistcolor}>19.01.01</td>
-                    <td width='40rem' height='30rem' style={thlistcolor}>화</td>
-                    <td width='70rem' height='30rem' style={thlistcolor}>09:00</td>
-                    <td width='70rem' height='30rem' style={thlistcolor}>20:00</td>
-                    <td width='70rem' height='30rem' style={thlistcolor}>11:00</td>
-                    <td width='50rem' height='30rem' style={thlistcolor}>83,500</td>
-                    <td width='40rem' height='30rem' style={thlistcolor}></td>
-                </tr>
-                </table>
+                <div className="listContainer">
+                    <table className="table" align = 'center'>
+                    <tr>
+                        <td width='80rem' style={thcolor}>날짜</td>
+                        <td width='40rem' style={thcolor}>요일</td>
+                        <td width='70rem' style={thcolor}>시작시간</td>
+                        <td width='70rem' style={thcolor}>종료시간</td>
+                        <td width='70rem' style={thcolor}>총 시간</td>
+                        <td width='50rem' style={thcolor}>금액</td>
+                        <td width='40rem' ></td>
+                    </tr>
+                    
+                    {getWorkData}
+
+                    {/* <tr>
+                        <td width='80rem' height='30rem' style={thlistcolor}>19.01.01</td>
+                        <td width='40rem' height='30rem' style={thlistcolor}>화</td>
+                        <td width='70rem' height='30rem' style={thlistcolor}>09:00</td>
+                        <td width='70rem' height='30rem' style={thlistcolor}>20:00</td>
+                        <td width='70rem' height='30rem' style={thlistcolor}>11:00</td>
+                        <td width='50rem' height='30rem' style={thlistcolor}>83,500</td>
+                        <td width='40rem' height='30rem' >
+                            <button className="delbutton">Del</button>
+                        </td>
+                    </tr> */}
+                    </table>
+                </div>
             </div>
 
             <div className="container_right">
