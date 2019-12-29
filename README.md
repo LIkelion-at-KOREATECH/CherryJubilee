@@ -13,6 +13,7 @@
 
 #### 2019. 12. 27 Front-End 및 Back-End 기초 작업
 #### 2019. 12. 29 Front, Back 연동 
+#### 2019. 12. 30 Work List Create, Read 완료
 
 ## API 명세
 
