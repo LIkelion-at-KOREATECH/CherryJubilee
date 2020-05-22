@@ -17,21 +17,6 @@ class PostViewset(viewsets.ModelViewSet):
 
     
     def create(self, request, pk=None) :
-        #work = Work.get_object(pk=1)
-        #print(work)
-        
-        #print(data)
-        #data['date'] = '2019-01-01'
-        #data['startTime'] = '14:25:00'
-        #data['endTime'] = '16:50:00'
-        
-        #print('------------------------------------------')
-        #print(data['date'])
-        #print(data['startTime'])
-        #print(data['endTime'])
-        #print(data['author'])
-
-        print('된다ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ')
 
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
